@@ -9,3 +9,7 @@ export const verification = async (req, res) => {
     let finisheddata = await usersservices.verifeteuser();
     res.send(finisheddata);
   };
+  export const signin = async (req, res) => {
+    let finisheddata = await usersservices.signin();
+    res.send(finisheddata);
+  };
