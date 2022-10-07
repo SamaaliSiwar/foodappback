@@ -8,5 +8,6 @@ const router = express.Router();
 router.post("/signup", usersservices.createuser);
 
 router.get("/confirm/:token", usersservices.verifeteuser);
-
+//create singin router
+userRouter.post('/signin',verified, usersservices.signin);
 export default router;
