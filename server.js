@@ -2,12 +2,15 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
+import userRouter from './routers/userRouter.js';
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/api/products',productRouter);
+app.use("/api/users", userRouter);
+
 
 
 mongoose
