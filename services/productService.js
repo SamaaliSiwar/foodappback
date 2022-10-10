@@ -1,9 +1,11 @@
 import Product from "../Models/Product.js";
 import data from "../sample-data.js";
+import expressAsyncHandler from 'express-async-handler';
+
 
 const productservices={
     send:async ()=>{
-       // await Product.remove({});
+        //await Product.remove({});
 
         const createdProduct = await Product.insertMany(data.products)
         return createdProduct;
@@ -16,9 +18,11 @@ const productservices={
           res.status(404).send({ message: 'Product Not Found' });
         }        
       },
-    getcategories:async ()=>{
-        const categories = await Product.find().distinct('categorie');
-        res.send(categories);
+    getcategories:expressAsyncHandler( 
+        async ()=>{
+        const names = await Product.find().distinct('name');
+        res.send(names);
     }
+    )
 }
 export default productservices;

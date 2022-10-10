@@ -14,6 +14,8 @@ export const usersservices={
 
     user = await new User({
       name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+
       email: req.body.email,
       password:req.body.password
     }).save();
