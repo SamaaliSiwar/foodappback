@@ -10,8 +10,9 @@ router.post("/signup", usersservices.createuser);
 
 router.get("/confirm/:token", usersservices.verifeteuser);
 //create singin router
-router.post('/signin'
-,
-usersservices.signin
-);
+router.post('/signin',usersservices.signin); 
+
+//create singin router with phone
+router.post('/signinphone',usersservices.signinphone); 
+
 export default router;

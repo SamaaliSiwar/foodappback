@@ -15,6 +15,7 @@ export const usersservices={
     user = await new User({
       name: req.body.name,
       email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
       password:req.body.password
     }).save();
 
@@ -81,9 +82,37 @@ export const usersservices={
       return;
     }
     res.status(401).send({message:'invalid user or password'});
+  },
+  
+  
+/* connect with number phone */
+
+signinphone:async(req, res)=>{
+  const user= await User.findOne({phoneNumber:req.body.phoneNumber });
+  if(user && user.verified== false)
+  {
+    res.status(401).send({message:'you have to activate your compte'});
+      return;
   }
   
-  
+  if(user && user.verified){
+      res.send(
+        {
+          _id:user._id,
+          name:user.name,
+          email:user.email,
+          isAdmin:user.isAdmin,
+          verified:user.verified,
+          token:generateToken(user),
+
+        }
+      );
+     
+    return;
+    }
+
+  res.status(401).send({message:'invalid phone number'});
+}
 
 }
 
