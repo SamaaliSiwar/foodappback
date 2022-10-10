@@ -15,6 +15,16 @@ router.get("/cat", async (req, res) => {
 });
 router.get("/seed", senddata);
 router.get("/:id", productservices.prodbyid);
-
-
+/* Add Product */
+router.post("/addproduct", productservices.addProduct);
+/* Get One Product */
+router.get("/getoneproduct/:id", productservices.getOneProduct);
+/* List Product */
+router.get("/listproduct", productservices.listProduct);
+/* Update Product */
+router.put("/updateproduct/:id", productservices.updateProduct);
+ /* Delete a Product with id */
+ router.delete("/deleteoneproduct/:id", productservices.deleteOneProduct);
+  /* Delete All Product */
+ router.delete("/", productservices.deleteAllProduct);
 export default router;
