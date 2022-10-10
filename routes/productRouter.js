@@ -7,12 +7,9 @@ import expressAsyncHandler from "express-async-handler";
 
 const router = express.Router();
 
-
-router.get("/cat", async (req, res) => {
-  console.log(req.body)
-  const products = await Product.find().distinct("categorie");
-  res.send(products);
-});
+//get all categories
+router.get("/cat",getcategories
+);
 router.get("/seed", senddata);
 router.get("/:id", productservices.prodbyid);
 /* Add Product */
@@ -20,7 +17,7 @@ router.post("/addproduct", productservices.addProduct);
 /* Get One Product */
 router.get("/getoneproduct/:id", productservices.getOneProduct);
 /* List Product */
-router.get("/listproduct", productservices.listProduct);
+router.get("/", productservices.listProduct);
 /* Update Product */
 router.put("/updateproduct/:id", productservices.updateProduct);
  /* Delete a Product with id */

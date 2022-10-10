@@ -1,6 +1,8 @@
 import Product from "../Models/Product.js";
 import data from "../sample-data.js";
 import expressAsyncHandler from 'express-async-handler';
+import PasswordReset from "../Models/Passwordreset.js";
+import User from "../Models/User.js";
 
 
 const productservices={
@@ -64,22 +66,9 @@ const productservices={
   },
 
 
-   listProduct: async(req,res) => {
-    Product.find().then((allProduct) => {
-      return res.status(200).json({
-        success: true,
-        message: 'A list of all product',
-        Product: allProduct,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: err.message,
-      });
-    });
-
+   listProduct: async (req, res) => {
+      const products = await Product.find();
+      res.send(products);
 },
 
  updateProduct :(req, res) => {
@@ -145,5 +134,12 @@ deleteAllProduct : (req, res) => {
       });
   },
 
+    getcategories:
+        
+        async (req, res) => {
+            const products = await Product.find().distinct("categorie");
+            return products;
+        }
+    
 }
 export default productservices;

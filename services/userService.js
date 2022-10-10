@@ -1,8 +1,12 @@
 import User from "../Models/User.js";
 import sendEmail, { generateToken } from "../utils.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Token from "../Models/Token.js";
 import crypto from "crypto"
+import PasswordReset from "../Models/Passwordreset.js";
+import nodemailer from "nodemailer";
+import { v4 as uuidv4 } from "uuid";
+import { sendResetEmail } from "../SendResetMail.js";
 export const usersservices={
   /* création de compte*/
   createuser:async (req,res)=>{
@@ -14,8 +18,6 @@ export const usersservices={
 
     user = await new User({
       name: req.body.name,
-      phoneNumber: req.body.phoneNumber,
-
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
       password:req.body.password
