@@ -18,9 +18,8 @@ export const usersservices={
 
     user = await new User({
       name: req.body.name,
-      phoneNumber: req.body.phoneNumber,
-
       email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
       password:req.body.password
     }).save();
 
@@ -36,7 +35,7 @@ export const usersservices={
 
     // Send varification email
     const link = `${process.env.BASE_URL}/users/confirm/${token.token}`;
-    await sendEmai(user.email, "Email Verification\n", link);
+    await sendEmail(user.email, "Email Verification\n", link);
     console.log(token)
     res.status(200).send({
         message: "Email Verification link sent to your email",
@@ -88,10 +87,37 @@ export const usersservices={
     }
     res.status(401).send({message:'invalid user or password'});
   },
- 
+  
+  
+/* connect with number phone */
+
+signinphone:async(req, res)=>{
+  const user= await User.findOne({phoneNumber:req.body.phoneNumber });
+  if(user && user.verified== false)
+  {
+    res.status(401).send({message:'you have to activate your compte'});
+      return;
   }
   
+  if(user && user.verified){
+      res.send(
+        {
+          _id:user._id,
+          name:user.name,
+          email:user.email,
+          isAdmin:user.isAdmin,
+          verified:user.verified,
+          token:generateToken(user),
 
+        }
+      );
+     
+    return;
+    }
 
+  res.status(401).send({message:'invalid phone number'});
+}
+
+}
 
 

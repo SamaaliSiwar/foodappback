@@ -13,4 +13,7 @@ export const verification = async (req, res) => {
     let finisheddata = await usersservices.signin();
     res.send(finisheddata);
   };
- 
+  export const signinphone = async (req, res) => {
+    let finisheddata = await usersservices.signinphone();
+    res.send(finisheddata);
+  };
