@@ -1,8 +1,12 @@
 import User from "../Models/User.js";
 import sendEmail, { generateToken } from "../utils.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Token from "../Models/Token.js";
 import crypto from "crypto"
+import PasswordReset from "../Models/Passwordreset.js";
+import nodemailer from "nodemailer";
+import { v4 as uuidv4 } from "uuid";
+import { sendResetEmail } from "../SendResetMail.js";
 export const usersservices={
   /* création de compte*/
   createuser:async (req,res)=>{
@@ -32,7 +36,7 @@ export const usersservices={
 
     // Send varification email
     const link = `${process.env.BASE_URL}/users/confirm/${token.token}`;
-    await sendEmail(user.email, "Email Verification\n", link);
+    await sendEmai(user.email, "Email Verification\n", link);
     console.log(token)
     res.status(200).send({
         message: "Email Verification link sent to your email",
@@ -83,10 +87,11 @@ export const usersservices={
       return;
     }
     res.status(401).send({message:'invalid user or password'});
+  },
+ 
   }
   
-  
 
-}
+
 
 

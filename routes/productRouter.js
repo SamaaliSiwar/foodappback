@@ -7,12 +7,9 @@ import expressAsyncHandler from "express-async-handler";
 
 const router = express.Router();
 
-
-router.get("/cat", async (req, res) => {
-  console.log(req.body)
-  const products = await Product.find().distinct("categorie");
-  res.send(products);
-});
+//get all categories
+router.get("/cat",getcategories
+);
 router.get("/seed", senddata);
 router.get("/:id", productservices.prodbyid);
 

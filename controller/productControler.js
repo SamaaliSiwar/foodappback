@@ -2,6 +2,7 @@
 import Product from "../Models/Product.js";
 import productservices from "../services/productService.js";
 
+
 export const senddata = async (req, res) => {
   let finisheddata = await productservices.send();
   res.send(finisheddata);
@@ -13,7 +14,7 @@ export const getProdById =async(req,res)=>{
  
   };
   export const getcategories =async(req,res)=>{
-    let finisheddata = await productservices.getcategories();
+    let finisheddata = await productservices.  getcategories();
     res.send(finisheddata);
    
     }
