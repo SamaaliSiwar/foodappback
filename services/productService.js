@@ -12,6 +12,7 @@ const productservices={
         const createdProduct = await Product.insertMany(data.products)
         return createdProduct;
     },
+  
     prodbyid:async (req,res) => {
         const product = await Product.findById(req.params.id);
         if (product ) {

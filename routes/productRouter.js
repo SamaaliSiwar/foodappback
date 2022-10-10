@@ -7,6 +7,7 @@ import expressAsyncHandler from "express-async-handler";
 
 const router = express.Router();
 
+
 //get all categories
 router.get("/cat",getcategories
 );
