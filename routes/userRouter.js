@@ -4,10 +4,14 @@ import express from "express";
 // import sendEmail from "../utils.js";
 // import crypto from "crypto";
 import { usersservices } from "../services/userService.js";
+import { verified } from "../utils.js";
 const router = express.Router();
 router.post("/signup", usersservices.createuser);
 
 router.get("/confirm/:token", usersservices.verifeteuser);
 //create singin router
-userRouter.post('/signin',verified, usersservices.signin);
+router.post('/signin'
+,
+usersservices.signin
+);
 export default router;

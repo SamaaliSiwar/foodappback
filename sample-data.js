@@ -24,6 +24,8 @@ let data={
           price: 8.49,
           discountPercentage: 10,
           label: 'new',
+          categorie: 'Pizza',
+
           rating: 4
         },
         {
@@ -31,6 +33,7 @@ let data={
           name: 'Barley soup with carrots, tomato',
           price: 6.49,
           discountPercentage: 10,
+          categorie:'soupe',
           rating: 4.5
         },
         {
@@ -38,6 +41,7 @@ let data={
           name: 'Pizza Carbonara 35cm',
           price: 10.99,
           label: 'new',
+          categorie:'pizza',
           rating: 3.5
         },
         {
@@ -45,7 +49,8 @@ let data={
           name: 'Yummy Burger',
           price: 4.99,
           discountPercentage: 10,
-          rating: 4.5
+          rating: 4.5,
+          categorie:'burger'
         }
       ],
     popularProducts: [

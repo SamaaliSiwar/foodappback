@@ -8,7 +8,7 @@ const productSchema =  new mongoose.Schema(
         discountPercentage:  {type: Number  },
         label: {type:String},
         rating: {type:Number, require:true},
-        categorie: {type:String,require:true},
+        categorie: {type: String, required: true },
         
         isPopular:{type:Boolean,require:true}
       }

@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import jwt  from "jsonwebtoken";
-
+/**création de mail de verification via nodemailer */
 const sendEmail = async (email, link) => {
   try {
   const transporter = nodemailer.createTransport({
@@ -31,6 +31,7 @@ const sendEmail = async (email, link) => {
   }
 };
 export default sendEmail;
+/**génération de token d'authentification via jsonwebtoken */
 export const generateToken = (user) => {
     return jwt.sign(
       {

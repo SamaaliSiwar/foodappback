@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import Token from "../Models/Token.js";
 import crypto from "crypto"
 export const usersservices={
+  /* création de compte*/
   createuser:async (req,res)=>{
 
     // Insert the new user if they do not exist yet.
@@ -35,6 +36,7 @@ export const usersservices={
         message: "Email Verification link sent to your email",
     });
   },
+  /*géneration de token de verification*/
   verifeteuser:async (req, res) => {
     try {
       const token = await Token.findOne({
@@ -51,9 +53,16 @@ export const usersservices={
       res.status(400).send("An error occured");
     }
   },
+/*connection au compte */
   signin:async(req, res)=>{
-    const user= await User.findOne({email:req.body.email});
-    if(user){
+    const user= await User.findOne({email:req.body.email });
+    if(user && user.verified== false)
+    {
+      res.status(401).send({message:'you have to activate your compte'});
+        return;
+    }
+    
+    if(user && user.verified){
       if(bcrypt.compareSync(req.body.password, user.password)){
         res.send(
           {
@@ -61,12 +70,15 @@ export const usersservices={
             name:user.name,
             email:user.email,
             isAdmin:user.isAdmin,
+            verified:user.verified,
             token:generateToken(user),
   
           }
         );
-        return;
+       
       }
+    
+      return;
     }
     res.status(401).send({message:'invalid user or password'});
   }
