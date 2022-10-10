@@ -7,11 +7,13 @@ import expressAsyncHandler from "express-async-handler";
 
 const router = express.Router();
 
+
 //get all categories
 router.get("/cat",getcategories
 );
 router.get("/seed", senddata);
 router.get("/:id", productservices.prodbyid);
+
 
 
 export default router;
