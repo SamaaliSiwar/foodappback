@@ -27,11 +27,7 @@ router.post("/forget", async (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error);
-      res.json({
-        status: "FAILED",
-        message: "user does not existe",
-      });
+      res.status(500).json(error)
     });
 });
 
@@ -53,10 +49,7 @@ router.post("/resetpassword", async (req, res) => {
               })
             )
             .catch((error) => {
-              res.json({
-                status: "SUCCESS",
-                message: "Password changed suuceccfuly",
-              });
+              res.status(500).json(error)
             });
         } else {
           //void reset record existe
@@ -84,27 +77,15 @@ router.post("/resetpassword", async (req, res) => {
                             });
                           })
                           .catch((error) => {
-                            console.log(error);
-                            res.json({
-                              status: "FAILED",
-                              message: "cheking password reset failed",
-                            });
+                            res.status(500).json(error)
                           });
                       })
                       .catch((error) => {
-                        console.log(error);
-                        res.json({
-                          status: "FAILED",
-                          message: "cheking password reset failed",
-                        });
+                        res.status(500).json(error)
                       });
                   })
                   .catch((error) => {
-                    console.log(error);
-                    res.json({
-                      status: "FAILED",
-                      message: "cheking password reset failed",
-                    });
+                    res.status(500).json(error)
                   });
               } else {
                 //record in correct
@@ -115,10 +96,7 @@ router.post("/resetpassword", async (req, res) => {
               }
             })
             .catch((error) => {
-              res.json({
-                status: "FAILED",
-                message: "cheking password reset failed",
-              });
+              res.status(500).json(error)
             });
         }
       } else {
@@ -129,11 +107,7 @@ router.post("/resetpassword", async (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error);
-      res.json({
-        status: "FAILED",
-        message: "cheking password reset failed",
-      });
+      res.status(500).json(error)
     });
 });
 

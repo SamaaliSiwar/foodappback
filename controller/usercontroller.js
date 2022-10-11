@@ -18,3 +18,7 @@ export const verification = async (req, res) => {
     let finisheddata = await usersservices.signinphone();
     res.send(finisheddata);
   };
+export const forgetpass= async(req,res)=>{
+  let finisheddata=await usersservices.forgot();
+  res.send(finisheddata);
+}

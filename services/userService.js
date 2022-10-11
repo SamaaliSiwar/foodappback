@@ -7,6 +7,7 @@ import PasswordReset from "../Models/Passwordreset.js";
 import nodemailer from "nodemailer";
 import { v4 as uuidv4 } from "uuid";
 import { sendResetEmail } from "../SendResetMail.js";
+import expressAsyncHandler from "express-async-handler";
 export const usersservices={
   /* création de compte*/
   createuser:async (req,res)=>{
@@ -116,7 +117,7 @@ signinphone:async(req, res)=>{
     }
 
   res.status(401).send({message:'invalid phone number'});
-}
+},
 
 }
 
